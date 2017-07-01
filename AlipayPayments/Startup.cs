@@ -12,6 +12,8 @@ using Microsoft.Extensions.Logging;
 using AlipayPayments.Data;
 using AlipayPayments.Models;
 using AlipayPayments.Services;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Rewrite;
 
 namespace AlipayPayments
 {
@@ -47,7 +49,10 @@ namespace AlipayPayments
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
-            services.AddMvc();
+            services.AddMvc(options =>
+            {
+                options.Filters.Add(new RequireHttpsAttribute());
+            });
 
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
@@ -59,6 +64,9 @@ namespace AlipayPayments
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+
+            var options = new RewriteOptions()
+                .AddRedirectToHttps();
 
             if (env.IsDevelopment())
             {
