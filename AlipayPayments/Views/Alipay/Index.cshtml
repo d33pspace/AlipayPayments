@@ -1,0 +1,170 @@
+﻿@{
+    ViewData["Title"] = "Alipay";
+}
+<h2>@ViewData["Title"].</h2>
+@Html.Raw(ViewBag.HtmlText)
+<style>
+    .content {
+        width: 100%;
+        min-width: 1200px;
+        height: 600px;
+    }
+
+    .alipayform {
+        width: 800px;
+        margin: 0 auto;
+        height: 600px;
+        border: 1px solid #0ae;
+        margin-top: 50px;
+    }
+
+    .element {
+        width: 600px;
+        height: 80px;
+        margin-left: 100px;
+        font-size: 20px;
+    }
+
+    .etitle, .einput {
+        float: left;
+        height: 26px;
+    }
+
+    .etitle {
+        width: 150px;
+        line-height: 26px;
+        text-align: right;
+    }
+
+    .einput {
+        width: 200px;
+        margin-left: 20px;
+    }
+
+        .einput input {
+            width: 398px;
+            height: 24px;
+            border: 1px solid #0ae;
+            font-size: 16px;
+        }
+
+    .mark {
+        margin-top: 10px;
+        width: 500px;
+        height: 30px;
+        margin-left: 80px;
+        line-height: 30px;
+        font-size: 12px;
+        color: #999
+    }
+
+    .legend {
+        margin-left: 100px;
+        font-size: 24px;
+    }
+
+    .alisubmit {
+        width: 400px;
+        height: 40px;
+        border: 0;
+        background-color: #0ae;
+        font-size: 16px;
+        color: #FFF;
+        cursor: pointer;
+        margin-left: 170px;
+    }
+</style>
+
+<div class="body-content">
+    <div class="content">
+        <form action="/Alipay/pay" class="alipayform" method="post" runat="server">
+            <div class="element" style="margin-top: 60px;">
+                <div class="legend">create_forex_trade</div>
+            </div>
+            <div class="element">
+                <div class="etitle">out_trade_no:</div>
+                <div class="einput">
+                    <input ID="WIDout_trade_no" name="out_trade_no" runat="server" />
+                </div>
+
+                <br>
+                <div class="mark">Remarks: It is the merchant trade number. No special characters.</div>
+            </div>
+            <div class="element">
+                <div class="etitle">Subject:</div>
+                <div class="einput">
+                    <input ID="WIDsubject" name="subject" value="test" runat="server" />
+                </div>
+                <br>
+                <div class="mark">Remarks：It is the product name. No special characters.</div>
+            </div>
+            <div class="element">
+                <div class="etitle">Currency:</div>
+                <div class="einput">
+                    <input ID="WIDcurrency" name="currency" value="USD" runat="server" />`
+                </div>
+                <br>
+                <div class="mark">Remarks: Settlement currency that merchants signed with Alipay, like USD</div>
+            </div>
+            <div class="element">
+                <div class="etitle">Total_fee:</div>
+                <div class="einput">
+                    <input ID="WIDtotal_fee" name="total_fee" value="0.01" runat="server" />
+                </div>
+                <br>
+                <div class="mark">Remarks: The product price in settlement currency</div>
+            </div>
+            <div class="element">
+                <div class="etitle">Body:</div>
+                <div class="einput">
+                    <input ID="WIDbody" name="body" value="test" runat="server" />
+                </div>
+                <br>
+                <div class="mark">Remarks: It is the description of the product. Optional.</div>
+            </div>
+            <div class="element">
+                <Button ID="BtnAlipay" type="submit" name="BtnAlipay" class="alisubmit" Text="Pay" Style="text-align: center;" runat="server" OnClick="onPaybuttonClicked">
+                    Pay
+                </Button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    var even = document.getElementById("licode");
+    var showqrs = document.getElementById("showqrs");
+    even.onmouseover = function () {
+        showqrs.style.display = "block";
+    }
+    even.onmouseleave = function () {
+        showqrs.style.display = "none";
+    }
+
+    var out_trade_no = document.getElementById("WIDout_trade_no");
+
+    //设定时间格式化函数
+    Date.prototype.format = function (format) {
+        var args = {
+            "M+": this.getMonth() + 1,
+            "d+": this.getDate(),
+            "h+": this.getHours(),
+            "m+": this.getMinutes(),
+            "s+": this.getSeconds(),
+        };
+        if (/(y+)/.test(format))
+            format = format.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+        for (var i in args) {
+            var n = args[i];
+            if (new RegExp("(" + i + ")").test(format))
+                format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? n : ("00" + n).substr(("" + n).length));
+        }
+        return format;
+    };
+    out_trade_no.value = 'test' + new Date().format("yyyyMMddhhmmss");
+
+    function onPaybuttonClicked()
+    {
+
+    }
+</script>
