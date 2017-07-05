@@ -36,9 +36,18 @@ namespace AlipayPayments.Controllers
             return View();
         }
 
-        public IActionResult Success()
+        [HttpGet]
+        public IActionResult Success(TradeModel trade)
         {
+            Console.WriteLine(trade);
             return View();
+        }
+
+        [HttpGet]
+        public IActionResult Notify(TradeModel trade)
+        {
+            Console.WriteLine(trade);
+            return RedirectToAction("Success");
         }
 
         public IActionResult Error()
