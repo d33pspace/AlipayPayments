@@ -49,10 +49,10 @@ namespace AlipayPayments
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
-            services.AddMvc(/*options =>
+            services.AddMvc(options =>
             {
                 options.Filters.Add(new RequireHttpsAttribute());
-            }*/);
+            });
 
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
@@ -65,8 +65,8 @@ namespace AlipayPayments
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
-            /*var options = new RewriteOptions()
-                .AddRedirectToHttps();*/
+            var options = new RewriteOptions()
+                .AddRedirectToHttps();
 
             if (env.IsDevelopment())
             {
