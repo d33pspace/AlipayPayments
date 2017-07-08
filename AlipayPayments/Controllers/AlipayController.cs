@@ -117,7 +117,8 @@ namespace AlipayPayments.Controllers
             ViewBag.Token = data.token;
             ViewBag.Random = data.random;
             ViewBag.Action = data.action;
-            return View();
+            return Ok();
+            //return View();
         }
 
         public IActionResult Error()
