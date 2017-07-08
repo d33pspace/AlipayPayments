@@ -111,7 +111,7 @@ namespace AlipayPayments.Controllers
             return View();
         }
         
-        public async Task<IActionResult> Redirect()
+        public IActionResult Redirect()
         {
             ViewBag.HtmlText = Request.QueryString.ToString();
             return View();
