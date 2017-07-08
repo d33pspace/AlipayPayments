@@ -111,14 +111,14 @@ namespace AlipayPayments.Controllers
             return View();
         }
 
-        [HttpPost]
-        public IActionResult Redirect(FormModel data)
+        public IActionResult Redirect()
         {
-            ViewBag.Token = data.token;
-            ViewBag.Random = data.random;
-            ViewBag.Action = data.action;
-            return Ok();
-            //return View();
+            string signature = Request.Query["signature"];
+            string timestamp = Request.Query["timestamp"];
+            string nonce = Request.Query["nonce"];
+            string echostr = Request.Query["echostr"];                
+
+            return Ok(echostr);
         }
 
         public IActionResult Error()

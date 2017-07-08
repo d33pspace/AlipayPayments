@@ -12,5 +12,10 @@ namespace AlipayPayments.Models
         public string token{get; set;}
         public string random{get; set;}
         public string action{get; set;}
+
+        public string signature { get; set; }
+        public string timestamp { get; set; }
+        public string nonce { get; set; }
+        public string echostr { get; set; }
     }
 }
