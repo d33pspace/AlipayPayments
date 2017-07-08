@@ -117,7 +117,6 @@ namespace AlipayPayments.Controllers
             string timestamp = Request.Query["timestamp"];
             string nonce = Request.Query["nonce"];
             string echostr = Request.Query["echostr"];                
-
             return Ok(echostr);
         }
 
