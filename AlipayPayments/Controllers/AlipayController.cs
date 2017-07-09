@@ -111,15 +111,6 @@ namespace AlipayPayments.Controllers
             return View();
         }
 
-        public IActionResult Redirect()
-        {
-            string signature = Request.Query["signature"];
-            string timestamp = Request.Query["timestamp"];
-            string nonce = Request.Query["nonce"];
-            string echostr = Request.Query["echostr"];                
-            return Ok(echostr);
-        }
-
         public IActionResult Error()
         {
             return View();
