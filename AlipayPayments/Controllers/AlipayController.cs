@@ -111,6 +111,12 @@ namespace AlipayPayments.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult Redirect()
+        {
+            return Ok(Request.Query["echostr"]);   
+        }
+
         public IActionResult Error()
         {
             return View();
