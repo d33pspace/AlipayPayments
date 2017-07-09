@@ -112,9 +112,9 @@ namespace AlipayPayments.Controllers
         }
 
         [HttpGet]
-        public IActionResult Redirect()
+        public string Redirect()
         {
-            return Ok(Request.Query["echostr"]);   
+            return Request.Query["echostr"];   
         }
 
         public IActionResult Error()
