@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc;
-using AlipayPayments.Models;
-using Com.Alipay;
-using AlipayCore;
-using System.ComponentModel;
-using System.Net.Http;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace AlipayPayments.Controllers
 {
